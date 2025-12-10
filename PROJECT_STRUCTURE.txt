@@ -1,0 +1,24 @@
+task-cli/                    
+├── cmd/
+│   └── ./                   # CLI entrypoint
+│       └── main.go
+├── go.mod
+├── go.sum
+└── internal/
+    ├── app/
+    │   └── app.go
+    ├── commands/
+    │   ├── command.go
+    │   ├── flag.go
+    │   └── flag_test.go     
+    ├── core/
+    │   ├── custom_errors.go
+    │   ├── task.go
+    │   └── tracker.go
+    ├── presenter/
+    │   └── console_presenter.go
+    ├── service/
+    │   └── taskTracker_service.go
+    └── storage/
+        ├── json_storage.go
+        └── storage.go
