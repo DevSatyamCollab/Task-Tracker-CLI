@@ -1,6 +1,7 @@
 package service
 
 import (
+	"slices"
 	"todo-list/internal/core"
 	"todo-list/internal/storage"
 )
@@ -125,10 +126,12 @@ func (ts *TaskService) GetAllProgressTask() []*core.Task {
 func (ts *TaskService) FindTask(id int) (int, error) {
 	tasklist := ts.tracker.GetAll()
 
-	for i, task := range tasklist {
-		if id == task.Id {
-			return i, nil
-		}
+	index, found := slices.BinarySearchFunc(tasklist, id, func(task *core.Task, targetID int) int {
+		return task.Id - targetID
+	})
+
+	if found {
+		return index, nil
 	}
 
 	return -1, core.ErrTaskNotFound
