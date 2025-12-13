@@ -123,7 +123,9 @@ func (ts *TaskService) GetAllProgressTask() []*core.Task {
 
 // find task
 func (ts *TaskService) FindTask(id int) (int, error) {
-	for i, task := range ts.tracker.GetAll() {
+	tasklist := ts.tracker.GetAll()
+
+	for i, task := range tasklist {
 		if id == task.Id {
 			return i, nil
 		}
